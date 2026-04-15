@@ -1,0 +1,34 @@
+package com.example.socialsparkapp
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import java.util.Calendar
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val btnSuggest = findViewById<Button>(R.id.btnSuggest)
+        val resultText = findViewById<TextView>(R.id.resultText)
+
+        btnSuggest.setOnClickListener {
+
+            val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+            val suggestion: String
+
+            if (hour < 12) {
+                suggestion = "🌅 Send a good morning message to a friend!"
+            } else if (hour < 18) {
+                suggestion = "☀️ Check in with someone you care about!"
+            } else {
+                suggestion = "🌙 Call or text a loved one before bed!"
+            }
+
+            resultText.text = suggestion
+        }
+    }
+}
